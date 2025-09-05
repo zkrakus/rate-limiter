@@ -33,8 +33,21 @@ A rate limiter controls how many requests a client can make within a specific ti
   isRequestAllowed(clientId, rulesId) -> {passes: boolean, remaining: number, resetTime: timestamp }
 
 ## High Level Design
+![diagram](./media/cloud-file-storage-HLD-2025-ratelimiter--08-12-1440.svg)
 
+### Rate limiting algorithms
+---
+#### Fixed Window Counter
+![alt text](./media/fixedWindowCounter.png)
+Downsides:
+  - Starvation
+    - If after making too many requests you are rate limited from some extended period ... that's a poor user experience.
+  - Boundary Effect
+    - If users make requests at the boundaries ... they can make double the amount of requests.
 
+#### Sliding Window
+
+![alt text](./media/slidingWindowLog.png)
 
 ## Deep Dives
 
